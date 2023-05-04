@@ -30,7 +30,10 @@ class StockSerializer(serializers.ModelSerializer):
             product = position.get('product')
             price = position.get('price')
             quantity = position.get('quantity')
-            StockProduct.objects.create(stock=stock, product=product, price=price, quantity=quantity)
+            StockProduct.objects.create(stock=stock,
+                                        product=product,
+                                        price=price,
+                                        quantity=quantity)
 
         return stock
 
@@ -42,6 +45,9 @@ class StockSerializer(serializers.ModelSerializer):
             price = position.get('price')
             quantity = position.get('quantity')
             product = position.get('product')
-            pos, created = StockProduct.objects.update_or_create(product=product, stock=stock, defaults={'price': price, 'quantity': quantity})
+            pos, created = StockProduct.objects.\
+                update_or_create(product=product, stock=stock,
+                                 defaults={'price': price,
+                                           'quantity': quantity})
 
-        return  stock
+        return stock
