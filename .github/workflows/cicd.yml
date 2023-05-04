@@ -47,12 +47,12 @@ jobs:
       - name: Линтинг(проверка на соответствие pep8)
         run: flake8 logistic/ --exclude=logistic/migrations/
 
-      -name: Деплой
-       uses: appleboy/ssh-action@master
-       with:
-         host: ${{ secrets.HOST_NAME}}
-         username: ${{ secrets.HOST_USER}}
-         password: ${{ secrets.HOST_PASSWORD}}
-         script: expect /home/vika/Netology-Django-Homework6/deploy.exp
+      - name: Деплой
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_NAME}}
+          username: ${{ secrets.HOST_USER}}
+          password: ${{ secrets.HOST_PASSWORD}}
+          script: expect /home/vika/Netology-Django-Homework6/deploy.exp
 
 
