@@ -47,6 +47,19 @@ jobs:
       - name: Линтинг(проверка на соответствие pep8)
         run: flake8 logistic/ --exclude=logistic/migrations/
 
+      - name: Тесты
+        run: python manage.py test
+        env:
+          SECRET_KEY:${{ env.SECRET_KEY }}
+          DEBUG:{{ env.DEBUG }}
+          ALLOWED_HOSTS:${{ env.ALLOWED_HOSTS }}
+          DB_ENGINE:${{ env.DB_ENGINE }}
+          DB_HOST:${{ env.DB_HOST }}
+          DB_PORT:${{ env.DB_PORT }}
+          DB_USER:${{ env.DB_USER }}
+          DB_PASSWORD:${{ env.DB_PASSWORD }}
+          DB_NAME:${{ env.DB_NAME }}
+
       - name: Деплой
         uses: appleboy/ssh-action@master
         with:
